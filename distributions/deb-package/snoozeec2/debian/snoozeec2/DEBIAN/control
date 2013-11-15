@@ -1,0 +1,9 @@
+Package: snoozeec2
+Version: 0.0.1-0
+Architecture: all
+Maintainer: Matthieu Simonin <matthieu.simonin@inria.fr>
+Installed-Size: 13826
+Section: misc
+Priority: optional
+Homepage: http://snooze.inria.fr
+Description: This is the EC2 API of the Snooze cloud manager.
