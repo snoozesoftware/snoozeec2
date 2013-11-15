@@ -1,0 +1,12 @@
+Source: snoozeec2
+Section: misc
+Priority: optional
+Maintainer: Matthieu Simonin <matthieu.simonin@inria.fr> 
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 5) 
+
+Homepage: http://snooze.inria.fr
+Package: snoozeec2
+Architecture: all
+Depends:
+Description: This is the EC2 API of the Snooze cloud manager.

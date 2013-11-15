@@ -1,0 +1,5 @@
+debian/input/init.d/snoozeec2 /etc/init.d
+debian/input/snoozeec2.jar /usr/share/snoozeec2
+debian/input/configs/log4j.xml /usr/share/snoozeec2/configs
+debian/input/configs/snooze_ec2.cfg /usr/share/snoozeec2/configs
+debian/input/configs/instances /usr/share/snoozeec2/configs
