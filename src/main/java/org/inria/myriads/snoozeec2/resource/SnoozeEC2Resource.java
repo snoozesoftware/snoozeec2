@@ -19,6 +19,7 @@ import com.amazonaws.ec2.doc._2010_08_31.ObjectFactory;
 import com.amazonaws.ec2.doc._2010_08_31.RebootInstancesResponseType;
 import com.amazonaws.ec2.doc._2010_08_31.ReservationInfoType;
 import com.amazonaws.ec2.doc._2010_08_31.ReservationSetType;
+import com.amazonaws.ec2.doc._2010_08_31.RunInstancesResponseType;
 import com.amazonaws.ec2.doc._2010_08_31.RunningInstancesItemType;
 import com.amazonaws.ec2.doc._2010_08_31.RunningInstancesSetType;
 import com.amazonaws.ec2.doc._2010_08_31.TerminateInstancesResponseType;
@@ -265,26 +266,20 @@ public class SnoozeEC2Resource extends ServerResource
             }
             i = i + 1;
         }
-        
-        DescribeInstancesResponseType response = new DescribeInstancesResponseType();
+        RunInstancesResponseType response = new RunInstancesResponseType();
         response.setRequestId(UUID.randomUUID().toString());
-        ReservationSetType reservationSet = new ReservationSetType();
-        ReservationInfoType reservation = new ReservationInfoType();
-        reservationSet.getItem().add(reservation); 
-        response.setReservationSet(reservationSet);
-        reservation.setOwnerId(Globals.DEFAULT_INITIALIZATION);
-        reservation.setReservationId(Globals.DEFAULT_INITIALIZATION);
-        
+        response.setOwnerId(Globals.DEFAULT_INITIALIZATION);
+        response.setReservationId(Globals.DEFAULT_INITIALIZATION);
         RunningInstancesSetType instanceSet = buildInstanceSet(virtualClusterResponse.getVirtualMachineMetaData());
-        reservation.setInstancesSet(instanceSet);
+        response.setInstancesSet(instanceSet);
         
         // set representation
         ObjectFactory objectFactory = new ObjectFactory();
-        JAXBElement<DescribeInstancesResponseType> elementResponse =
-                objectFactory.createDescribeInstancesResponse(response);
+        JAXBElement<RunInstancesResponseType> elementResponse =
+                objectFactory.createRunInstancesResponse(response);
         
-        JaxbRepresentation<JAXBElement<DescribeInstancesResponseType>> responseRepresentation =
-                new JaxbRepresentation<JAXBElement<DescribeInstancesResponseType>>(elementResponse);
+        JaxbRepresentation<JAXBElement<RunInstancesResponseType>> responseRepresentation =
+                new JaxbRepresentation<JAXBElement<RunInstancesResponseType>>(elementResponse);
         responseRepresentation.setContextPath(CONTEXTPATH);
         return responseRepresentation;
     }
@@ -409,6 +404,7 @@ public class SnoozeEC2Resource extends ServerResource
      */
     private RunningInstancesSetType buildInstanceSet(List<VirtualMachineMetaData> virtualMachines)
     {
+        log_.debug("Building Instance set");
         RunningInstancesSetType instanceSet = new RunningInstancesSetType();
         List<RunningInstancesItemType> runnningInstances = instanceSet.getItem();
         for (VirtualMachineMetaData virtualMachine : virtualMachines)
@@ -421,15 +417,14 @@ public class SnoozeEC2Resource extends ServerResource
             state.setCode(translatedState.getCode());
             state.setName(translatedState.getMessage());
             
-            runningInstance.setInstanceState(state);
-            
+            runningInstance.setInstanceState(state);   
             runningInstance.setImageId(virtualMachine.getImage().getName());
             runningInstance.setInstanceId(virtualMachine.getVirtualMachineLocation().getVirtualMachineId());
             runningInstance.setIpAddress(virtualMachine.getIpAddress());
             runningInstance.setDnsName(virtualMachine.getVirtualMachineLocation().getVirtualMachineId());
             runnningInstances.add(runningInstance);
         }
-        
+        log_.debug("InstanceSet built");
         return instanceSet;
     }
 
