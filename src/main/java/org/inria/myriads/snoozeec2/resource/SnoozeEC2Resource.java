@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.xml.bind.JAXBElement;
 
+import com.amazonaws.ec2.doc._2010_08_31.CreateTagsResponseType;
 import com.amazonaws.ec2.doc._2010_08_31.DescribeAddressesResponseInfoType;
 import com.amazonaws.ec2.doc._2010_08_31.DescribeAddressesResponseItemType;
 import com.amazonaws.ec2.doc._2010_08_31.DescribeAddressesResponseType;
@@ -108,12 +109,38 @@ public class SnoozeEC2Resource extends ServerResource
         
         case RebootInstances:
             return rebootInstances();
-            
+        
+        case CreateTags:
+            return createTags();
             
         default: 
             log_.error(String.format("Action %s not supported by the snooze API", stringAction));
             return error();
         }
+    }
+
+    /**
+     * 
+     * Creates tags (stub).
+     * 
+     * @return xml CreateTagesResponse type.
+     */
+    private Representation createTags()
+    {   
+        log_.debug("Creating tags");
+        CreateTagsResponseType response = new CreateTagsResponseType();
+        response.setRequestId(UUID.randomUUID().toString());
+        response.setReturn(true);
+        
+        //set representation
+        ObjectFactory objectFactory = new ObjectFactory();
+        JAXBElement<CreateTagsResponseType> elementResponse =
+                objectFactory.createCreateTagsResponse(response);
+        
+        JaxbRepresentation<JAXBElement<CreateTagsResponseType>> responseRepresentation =
+                new JaxbRepresentation<JAXBElement<CreateTagsResponseType>>(elementResponse);
+        responseRepresentation.setContextPath(CONTEXTPATH);
+        return responseRepresentation;
     }
 
     /**

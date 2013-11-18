@@ -21,5 +21,7 @@ public enum EC2Action
     TerminateInstances,
     /** Reboot instances.*/
     RebootInstances,
+    /** Create Tags.*/
+    CreateTags,
 }
 
