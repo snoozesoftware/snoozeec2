@@ -47,3 +47,12 @@ print nodes
 
 ```
 
+## Development
+
+Fork the repository
+Make your bug fixes or feature additions by following our coding conventions (see the snoozecheckstyle repository)
+Send a pull request
+
+## Copyright
+
+Snooze is copyrighted by INRIA and released under the GPL v2 license (see LICENSE.txt). It is registered at the APP (Agence de Protection des Programmes) under the number IDDN.FR.001.100033.000.S.P.2012.000.10000.
