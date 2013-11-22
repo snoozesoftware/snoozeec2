@@ -22,7 +22,6 @@ package org.inria.myriads.snoozeec2.configurator.api;
 import java.io.Serializable;
 
 import org.inria.myriads.snoozecommon.communication.NetworkAddress;
-import org.inria.myriads.snoozeec2.configurator.networking.NetworkingSettings;
 
 
 
@@ -40,10 +39,10 @@ public class EC2Configuration
     /** Networking settings.*/
     private NetworkAddress networkingSettings_;
     
-    /** Image repository address */;
+    /** Image repository address. */;
     private NetworkAddress imageRepositorySettings_;
 
-    /** bootstrap repository address */;
+    /** bootstrap repository address. */;
     private NetworkAddress bootstrapSettings_;
     
     

@@ -45,13 +45,10 @@ import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
-
-
-
-
 /**
+ * 
+ * Snooze EC2 resource.
+ * 
  * @author msimonin
  *
  */
