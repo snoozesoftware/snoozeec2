@@ -83,21 +83,21 @@ public final class Main
         }
         
         LoggerUtils.configureLogger(logFile);      
-        EC2Configuration EC2Configuration = null;
-        EC2Instances EC2Instances = null;
+        EC2Configuration ec2Configuration = null;
+        EC2Instances ec2Instances = null;
         try 
         {
             EC2Configurator imageServiceConfigurator = 
                     EC2ConfiguratorFactory.newNodeConfigurator(configurationFile);
-            EC2Configuration = imageServiceConfigurator.getImageServiceConfiguration();
+            ec2Configuration = imageServiceConfigurator.getImageServiceConfiguration();
 
             
             EC2InstancesGenerator instancesGenerator = 
                     EC2InstancesGeneratorFactory.newInstancesGenerator(instancesFile);
             
-            EC2Instances = instancesGenerator.generate();
+            ec2Instances = instancesGenerator.generate();
 
-            startNode(EC2Configuration, EC2Instances);
+            startNode(ec2Configuration, ec2Instances);
         }
         catch (EC2ConfiguratorException exception) 
         {
@@ -140,29 +140,31 @@ public final class Main
         component.getServers().add(jettyServer);
     }
     
-    /** 
-     * Main routine to start the node.
-     *  
-     * @param EC2Configuration    The node configuration
-     * @param eC2Instances 
-     * @throws Exception 
+    
+    /**
+     * 
+     * Main routine to start the ec2 service.
+     * 
+     * @param ec2Configuration  EC2 Configuration
+     * @param ec2Instances      EC2 instances file
+     * @throws Exception        Exception
      */
-    private static void startNode(EC2Configuration EC2Configuration, EC2Instances ec2Instances) 
+    private static void startNode(EC2Configuration ec2Configuration, EC2Instances ec2Instances) 
         throws Exception 
     {
-        Guard.check(EC2Configuration);
+        Guard.check(ec2Configuration);
         log_.debug("Starting the node initialization");
                 
         Component component = new Component();
         Context context = component.getContext().createChildContext();
-        initializeRESTletComponent(component, context, EC2Configuration);
+        initializeRESTletComponent(component, context, ec2Configuration);
         
         Application application = null;
        
         log_.debug("Starting the ec2 API");
         application = new EC2Application(context);
         attachApplication(component, application);
-        SnoozeEC2Backend backend = new SnoozeEC2Backend(EC2Configuration, ec2Instances);
+        SnoozeEC2Backend backend = new SnoozeEC2Backend(ec2Configuration, ec2Instances);
         context.getAttributes().put("backend", backend);
        
     }

@@ -31,7 +31,6 @@ import org.inria.myriads.snoozecommon.guard.Guard;
 import org.inria.myriads.snoozecommon.util.NetworkUtils;
 import org.inria.myriads.snoozeec2.configurator.api.EC2Configuration;
 import org.inria.myriads.snoozeec2.configurator.api.EC2Configurator;
-import org.inria.myriads.snoozeec2.configurator.networking.NetworkingSettings;
 import org.inria.myriads.snoozeec2.exception.EC2ConfiguratorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +50,7 @@ public final class JavaPropertyEC2Configurator
     private static final Logger log_ = LoggerFactory.getLogger(JavaPropertyEC2Configurator.class);
     
     /** NodeParams. */
-    private EC2Configuration EC2Configuration_;
+    private EC2Configuration ec2Configuration_;
         
     /** Properties. */
     private Properties properties_;
@@ -67,7 +66,7 @@ public final class JavaPropertyEC2Configurator
         throws EC2ConfiguratorException, IOException
     {
         Guard.check(configurationFile);
-        EC2Configuration_ = new EC2Configuration();
+        ec2Configuration_ = new EC2Configuration();
           
         properties_ = new Properties();    
         FileInputStream fileInput = new FileInputStream(configurationFile);
@@ -93,7 +92,7 @@ public final class JavaPropertyEC2Configurator
         String contextPath = properties_.getProperty("config.ec2.package.contextpath");
         if (!StringUtils.isBlank(contextPath))
         {
-            EC2Configuration_.setContextPath(contextPath);
+            ec2Configuration_.setContextPath(contextPath);
         }
         else
         {
@@ -130,7 +129,7 @@ public final class JavaPropertyEC2Configurator
             int controlDataPort = Integer.valueOf(getProperty("bootstrap.port"));  
             NetworkAddress controlDataAddress = 
                     NetworkUtils.createNetworkAddress(listenAddress, controlDataPort);
-            EC2Configuration_.setBootstrapSettings(controlDataAddress);
+            ec2Configuration_.setBootstrapSettings(controlDataAddress);
             log_.debug("bootstrap setting set");
         }
         catch (Exception exception)
@@ -164,9 +163,9 @@ public final class JavaPropertyEC2Configurator
             int controlDataPort = Integer.valueOf(getProperty("imageRepository.port"));  
             NetworkAddress controlDataAddress = 
                     NetworkUtils.createNetworkAddress(listenAddress, controlDataPort);
-            EC2Configuration_.setImageRepositorySettings(controlDataAddress);
+            ec2Configuration_.setImageRepositorySettings(controlDataAddress);
         }
-        catch( Exception exception)
+        catch (Exception exception)
         {
             log_.debug("Unable to set the image reposirory settings : " + exception.getMessage());
             throw new EC2ConfiguratorException(exception.getMessage());
@@ -179,7 +178,7 @@ public final class JavaPropertyEC2Configurator
     @Override
     public EC2Configuration getImageServiceConfiguration() 
     {
-        return EC2Configuration_;
+        return ec2Configuration_;
     }
     
     /**
@@ -205,7 +204,7 @@ public final class JavaPropertyEC2Configurator
             int controlDataPort = Integer.valueOf(getProperty("network.listen.port"));  
             NetworkAddress controlDataAddress = 
                     NetworkUtils.createNetworkAddress(listenAddress, controlDataPort);
-            EC2Configuration_.setNetworkingSettings(controlDataAddress);
+            ec2Configuration_.setNetworkingSettings(controlDataAddress);
         }
         catch (Exception exception)
         {

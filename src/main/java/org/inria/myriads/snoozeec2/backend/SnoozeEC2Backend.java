@@ -43,10 +43,10 @@ public class SnoozeEC2Backend
     private static final Logger log_ = LoggerFactory.getLogger(SnoozeEC2Backend.class);
     
     /** Image repository settings. */
-    private EC2Configuration EC2Configuration_;
+    private EC2Configuration ec2Configuration_;
     
     /** Instances.*/
-    private EC2Instances EC2Instances_;
+    private EC2Instances ec2Instances_;
     
     /**
      * 
@@ -57,8 +57,8 @@ public class SnoozeEC2Backend
      */
     public SnoozeEC2Backend(EC2Configuration imageServiceConfiguration, EC2Instances ec2Instances) 
     {
-        EC2Configuration_ = imageServiceConfiguration;
-        EC2Instances_ = ec2Instances;
+        ec2Configuration_ = imageServiceConfiguration;
+        ec2Instances_ = ec2Instances;
     }
 
     /**
@@ -70,7 +70,7 @@ public class SnoozeEC2Backend
     public List<VirtualMachineMetaData> describeInstances()
     {
         log_.debug("Describe instances");
-        NetworkAddress bootstrapAddress = EC2Configuration_.getBootstrapSettings();
+        NetworkAddress bootstrapAddress = ec2Configuration_.getBootstrapSettings();
         BootstrapAPI bootstrapCommunicator =
                 org.inria.myriads.snoozecommon.communication.rest.CommunicatorFactory
                 .newBootstrapCommunicator(bootstrapAddress);
@@ -91,7 +91,7 @@ public class SnoozeEC2Backend
     public ArrayList<VirtualMachineImage> describeImages()
     {
         log_.debug("Getting the images from the image repository");
-        NetworkAddress imageRepositoryAddress = EC2Configuration_.getImageRepositorySettings();
+        NetworkAddress imageRepositoryAddress = ec2Configuration_.getImageRepositorySettings();
         
         ImagesRepositoryAPI imagesRepositoryCommunicator = 
                 org.inria.myriads.snoozeimages.communication.rest.CommunicatorFactory
@@ -118,7 +118,7 @@ public class SnoozeEC2Backend
     public String runInstances(VirtualClusterSubmissionRequest submissionRequest)
     {
         log_.debug("Starting instances");
-        NetworkAddress bootstrapAddress = EC2Configuration_.getBootstrapSettings();
+        NetworkAddress bootstrapAddress = ec2Configuration_.getBootstrapSettings();
         BootstrapAPI bootstrapCommunicator = 
                 org.inria.myriads.snoozecommon.communication.rest.CommunicatorFactory
                 .newBootstrapCommunicator(bootstrapAddress);
@@ -131,7 +131,7 @@ public class SnoozeEC2Backend
      */
     public EC2Configuration getEC2Configuration()
     {
-        return EC2Configuration_;
+        return ec2Configuration_;
     }
 
     /**
@@ -139,7 +139,7 @@ public class SnoozeEC2Backend
      */
     public void setEC2Configuration(EC2Configuration eC2Configuration)
     {
-        EC2Configuration_ = eC2Configuration;
+        ec2Configuration_ = eC2Configuration;
     }
 
     /**
@@ -147,7 +147,7 @@ public class SnoozeEC2Backend
      */
     public EC2Instances getEC2Instances()
     {
-        return EC2Instances_;
+        return ec2Instances_;
     }
 
     /**
@@ -155,7 +155,7 @@ public class SnoozeEC2Backend
      */
     public void setEC2Instances(EC2Instances eC2Instances)
     {
-        EC2Instances_ = eC2Instances;
+        ec2Instances_ = eC2Instances;
     }
 
     /**
@@ -168,7 +168,7 @@ public class SnoozeEC2Backend
     public boolean rebootInstances(List<String> listInstances)
     {
         log_.debug("Rebooting instances");
-        NetworkAddress bootstrapAddress = EC2Configuration_.getBootstrapSettings();
+        NetworkAddress bootstrapAddress = ec2Configuration_.getBootstrapSettings();
         BootstrapAPI bootstrapCommunicator = 
                 org.inria.myriads.snoozecommon.communication.rest.CommunicatorFactory
                 .newBootstrapCommunicator(bootstrapAddress);
@@ -191,7 +191,7 @@ public class SnoozeEC2Backend
     public InstanceStateChangeSetType terminateInstances(List<String> listInstances)
     {
         log_.debug("Terminating instances");
-        NetworkAddress bootstrapAddress = EC2Configuration_.getBootstrapSettings();
+        NetworkAddress bootstrapAddress = ec2Configuration_.getBootstrapSettings();
         BootstrapAPI bootstrapCommunicator = 
                 org.inria.myriads.snoozecommon.communication.rest.CommunicatorFactory
                 .newBootstrapCommunicator(bootstrapAddress);
@@ -247,7 +247,7 @@ public class SnoozeEC2Backend
     public VirtualClusterSubmissionResponse getVirtualClusterResponse(String taskIdentifier)
     {
         log_.debug("Describe instances");
-        NetworkAddress bootstrapAddress = EC2Configuration_.getBootstrapSettings();
+        NetworkAddress bootstrapAddress = ec2Configuration_.getBootstrapSettings();
         BootstrapAPI bootstrapCommunicator = 
                 org.inria.myriads.snoozecommon.communication.rest.CommunicatorFactory
                 .newBootstrapCommunicator(bootstrapAddress);
