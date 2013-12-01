@@ -21,9 +21,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:http://github.com/snoozesoftware/libvirtConfigGenerator.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/snoozesoftware/libvirtConfigGenerator.git</developerConnection>
-    <url>https://github.com/snoozesoftware/libvirtConfigGenerator.git</url>
+    <connection>scm:git:http://github.com/snoozesoftware/snoozeec2.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/snoozesoftware/snoozeec2.git</developerConnection>
+    <url>https://github.com/snoozesoftware/snoozeec2.git</url>
   </scm>
 
 
@@ -195,11 +195,6 @@
 </build>
   
   <dependencies>
-  	<dependency>
-  		<groupId>org.yaml</groupId>
-  		<artifactId>snakeyaml</artifactId>
-  		<version>1.14-SNAPSHOT</version>
-  	</dependency>
 	
 	<dependency>
 	  <groupId>org.slf4j</groupId>
