@@ -1,5 +1,6 @@
 package org.inria.myriads.snoozeec2.resource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +27,7 @@ import com.amazonaws.ec2.doc._2010_08_31.RunningInstancesSetType;
 import com.amazonaws.ec2.doc._2010_08_31.TerminateInstancesResponseType;
 
 import org.apache.commons.lang3.StringUtils;
+import org.inria.myriads.snoozecommon.communication.NetworkAddress;
 import org.inria.myriads.snoozecommon.communication.virtualcluster.VirtualMachineMetaData;
 import org.inria.myriads.snoozecommon.communication.virtualcluster.submission.VirtualClusterSubmissionRequest;
 import org.inria.myriads.snoozecommon.communication.virtualcluster.submission.VirtualClusterSubmissionResponse;
@@ -35,12 +37,16 @@ import org.inria.myriads.snoozecommon.util.TimeUtils;
 import org.inria.myriads.snoozecommon.virtualmachineimage.VirtualMachineImage;
 import org.inria.myriads.snoozeec2.action.EC2Action;
 import org.inria.myriads.snoozeec2.backend.SnoozeEC2Backend;
+import org.inria.myriads.snoozeec2.communication.rest.CommunicatorFactory;
+import org.inria.myriads.snoozeec2.communication.rest.api.SnoozeEC2API;
+import org.inria.myriads.snoozeec2.communication.rest.api.impl.RESTletSnoozeEC2Communicator;
 import org.inria.myriads.snoozeec2.instances.EC2Instance;
 import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 import org.restlet.ext.jaxb.JaxbRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +58,7 @@ import org.slf4j.LoggerFactory;
  * @author msimonin
  *
  */
-public class SnoozeEC2Resource extends ServerResource 
+public class SnoozeEC2Resource extends ServerResource implements SnoozeEC2API 
 {
     /** Define the logger. */
     private static final Logger log_ = LoggerFactory.getLogger(SnoozeEC2Resource.class);
@@ -79,8 +85,8 @@ public class SnoozeEC2Resource extends ServerResource
      * 
      * @return xmlRepresentation.
      */
-    @Get
-    public Representation toXml()
+    
+    public Representation handleRequest()
     {
         Form queryParams = getQuery();
         String stringAction = queryParams.getFirstValue("Action");
@@ -114,6 +120,23 @@ public class SnoozeEC2Resource extends ServerResource
             log_.error(String.format("Action %s not supported by the snooze API", stringAction));
             return error();
         }
+    }
+    
+    @Post
+    public Representation handlePost(Representation entity)
+    {
+        NetworkAddress address = new NetworkAddress();
+        address.setAddress("localhost");
+        address.setPort(4001);
+        SnoozeEC2API snoozeEC2Communicator = CommunicatorFactory.newSnoozeEC2Communicator(address);
+        return snoozeEC2Communicator.handlePost(entity);
+      
+    }
+    
+    @Get
+    public Representation handleGet()
+    {
+        return handleRequest();
     }
 
     /**
