@@ -19,6 +19,11 @@
  */
 package org.inria.myriads.snoozeec2.communication.rest;
 
+import org.inria.myriads.snoozecommon.communication.NetworkAddress;
+import org.inria.myriads.snoozeec2.communication.rest.api.SnoozeEC2API;
+import org.inria.myriads.snoozeec2.communication.rest.api.impl.RESTletSnoozeEC2Communicator;
+
+
 
 
 /**
@@ -32,5 +37,17 @@ public final class CommunicatorFactory
     private CommunicatorFactory()
     {
         throw new UnsupportedOperationException();
+    }
+    
+    
+    /**
+     * Creates a new bootstrap communicator instance.
+     * 
+     * @param bootstrapAddress     The bootstrap address
+     * @return                     The bootstrap communicator instance
+     */
+    public static SnoozeEC2API newSnoozeEC2Communicator(NetworkAddress snoozeEC2Address) 
+    {
+        return new RESTletSnoozeEC2Communicator(snoozeEC2Address);
     }
 }
