@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.inria.myriads</groupId>
   <artifactId>snoozeec2</artifactId>
-  <version>2.2.0-SNAPSHOT</version>
+  <version>2.1.1-SNAPSHOT</version>
   <name>snoozeec2</name>
   <description>This is the EC2 API for Snooze.</description>
 
@@ -46,12 +46,6 @@
 	      <url>http://snooze.inria.fr/maven/releases</url>
     </repository>
 
-	  <repository>
-	  	<id>Sonatype-public</id>
-	  	<name>SnakeYAML repository</name>
-	  	<url>http://oss.sonatype.org/content/groups/public/</url>
-	  </repository>
-	  
   </repositories> 
 
   <profiles>
@@ -217,13 +211,13 @@
 	<dependency>
 		<groupId>org.inria.myriads</groupId>
 		<artifactId>snoozecommon</artifactId>
-		<version>2.2.0-SNAPSHOT</version>
+		<version>2.1.1-SNAPSHOT</version>
 	</dependency>
 
 	<dependency>
 		<groupId>org.inria.myriads</groupId>
 		<artifactId>snoozeimages</artifactId>
-		<version>2.2.0-SNAPSHOT</version>
+		<version>2.1.1-SNAPSHOT</version>
 	</dependency>
 		
 	 <dependency>
