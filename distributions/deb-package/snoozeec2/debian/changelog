@@ -1,6 +1,12 @@
+snoozeec2 (2.1.2-0) unstable; urgency=low
+
+   * Add euca2ools basic support
+
+ -- Matthieu Simonin <matthieu.simonin@inria.fr>  Wed,  16 Oct 2013 10:31:49 -0700
+
 snoozeec2 (2.1.1-0) unstable; urgency=low
 
-   * TODO
+   * Add euca2ools basic support
 
  -- Matthieu Simonin <matthieu.simonin@inria.fr>  Wed,  16 Oct 2013 10:31:49 -0700
 
