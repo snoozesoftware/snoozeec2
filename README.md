@@ -47,6 +47,34 @@ print nodes
 
 ```
 
+
+## Use with Euca2ools
+
+First of all, install euca2ools program on your local machine. In order to use euca2ools you need to define some environment variables, this can be done by storing them in a file, and by sourcing it.
+
+```
+# snoozeeuca2oolsrc
+export EC2_URL="http://<snoozeec2-address>:<snoozeec2-port>"
+export S3_URL=""
+export EUCALYPTUS_CERT=""
+export EC2_CERT=""
+export EC2_PRIVATE_KEY=""
+export EC2_ACCESS_KEY=""
+export EC2_SECRET_KEY=""
+```
+
+Source the file
+
+```
+source snoozeeuc2oolsrc
+```
+
+You can now start working with euca2ools
+
+```
+$) euca-describe-images
+```
+
 ## Development
 
 Fork the repository
