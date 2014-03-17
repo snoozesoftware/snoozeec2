@@ -1,3 +1,9 @@
+snoozeec2 (2.2.0-0) unstable; urgency=low
+
+   * Catch up release
+
+ -- Matthieu Simonin <matthieu.simonin@inria.fr>  Wed,  16 Oct 2013 10:31:49 -0700
+
 snoozeec2 (2.1.2-0) unstable; urgency=low
 
    * Add euca2ools basic support
