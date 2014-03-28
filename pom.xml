@@ -260,7 +260,7 @@
 	<dependency>
 	   <groupId>com.amazonaws.ec2.doc._2010_08_31</groupId>
 	   <artifactId>EC2configGenerator</artifactId>
-	   <version>0.0.2-SNAPSHOT</version>
+	   <version>0.0.1</version>
 	</dependency>
 		
   </dependencies>

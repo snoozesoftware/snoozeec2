@@ -2,7 +2,7 @@ Package: snoozeec2
 Version: 2.2.0-0
 Architecture: all
 Maintainer: Matthieu Simonin <matthieu.simonin@inria.fr>
-Installed-Size: 13613
+Installed-Size: 13605
 Section: misc
 Priority: optional
 Homepage: http://snooze.inria.fr
