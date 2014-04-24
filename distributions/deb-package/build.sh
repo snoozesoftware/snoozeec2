@@ -20,7 +20,7 @@
 #
 
 SNOOZE_PACKAGE_NAME="snoozeec2"
-SNOOZE_JAR_NAME="uber-snoozeec2-2.1.4-SNAPSHOT.jar"
+SNOOZE_JAR_NAME="uber-snoozeec2-2.1.4.jar"
 
 # Update config files
 cp -R ../../configs/snooze_ec2.cfg $SNOOZE_PACKAGE_NAME/debian/input/configs/
