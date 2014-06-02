@@ -59,8 +59,8 @@ public final class JavaPropertyEC2Configurator
      * Initialize parameters.
      *  
      * @param configurationFile             The configuration file
-     * @throws EC2ConfiguratorException 
-     * @throws IOException 
+     * @throws EC2ConfiguratorException     Exception 
+     * @throws IOException                  Exception
      */
     public JavaPropertyEC2Configurator(String configurationFile) 
         throws EC2ConfiguratorException, IOException

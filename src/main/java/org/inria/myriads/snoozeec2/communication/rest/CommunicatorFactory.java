@@ -43,7 +43,7 @@ public final class CommunicatorFactory
     /**
      * Creates a new bootstrap communicator instance.
      * 
-     * @param bootstrapAddress     The bootstrap address
+     * @param snoozeEC2Address     Snooze ec2 address
      * @return                     The bootstrap communicator instance
      */
     public static SnoozeEC2API newSnoozeEC2Communicator(NetworkAddress snoozeEC2Address) 
