@@ -228,7 +228,6 @@ public class SnoozeEC2Backend
     /**
      * 
      * Polling interval.
-     * @todo get it from cfg.
      * 
      * @return  the polling interval.
      */
@@ -264,7 +263,6 @@ public class SnoozeEC2Backend
     /**
      * 
      * Gets the number of retries.
-     * @todo get it form cfg.
      * 
      * 
      * @return the number of retries.
